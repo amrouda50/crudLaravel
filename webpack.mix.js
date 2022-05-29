@@ -1,5 +1,19 @@
 const mix = require('laravel-mix');
-
+const path = require('path');
+// config eslint
+mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                enforce: 'pre',
+                exclude: /node_modules/,
+                loader: 'eslint-loader',
+                include: path.resolve(__dirname),
+                test: /\.(js|vue)?$/
+            },
+        ]
+    }
+})
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
