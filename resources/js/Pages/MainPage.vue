@@ -9,6 +9,12 @@
 
                 <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
 
+                    <div class="fcf-form-group">
+                        <label for="Email" class="fcf-label">Recipient email address</label>
+                        <div class="fcf-input-group">
+                            <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                        </div>
+                    </div>
 
                     <div class="fcf-form-group">
                         <label for="Message" class="fcf-label">Your message</label>
@@ -16,10 +22,13 @@
                             <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
                         </div>
                     </div>
-
+                    <input type="file" id="file" name="file" class="fcf-form-file" required>
                     <div class="fcf-form-group">
                         <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
                     </div>
+
+
+
 
                 </form>
             </div>
@@ -90,6 +99,16 @@ export default {
     outline: none;
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.fcf-form-file{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
 }
 
 .fcf-form-control:focus {
