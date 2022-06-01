@@ -8,6 +8,8 @@ const app = document.getElementById('app')
 
 const pages = {
     'Auth/Login': require('./Pages/Auth/Login.vue').default,
+    'MainPage': require('./Pages/MainPage.vue').default,
+
 }
 
 new Vue({
