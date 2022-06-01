@@ -1,15 +1,16 @@
 <template>
     <div>
+        <nav-bar/>
 
-        <h1> Hello </h1>
     </div>
 </template>
 
 
 <script>
-
+import NavBar from "../../Components/NavBar"
 export default {
     name: 'Login',
+    components: {NavBar},
 }
 
 </script>
