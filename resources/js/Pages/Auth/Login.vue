@@ -1,17 +1,17 @@
 <template>
     <div>
         <nav-bar/>
-        <form action="action_page.php" method="post">
+        <form @submit.prevent="submit" >
             <div class="imgcontainer">
                 <img :src="require('../../../assets/img_avatar.png').default" alt="Avatar" class="avatar">
             </div>
 
             <div class="container">
                 <label for="uname"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="uname" required>
+                <input type="text" v-model="form.email" placeholder="Enter Email" name="uname" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" v-model="form.password" placeholder="Enter Password" name="psw" required>
 
                 <button type="submit">Login</button>
 
@@ -26,6 +26,20 @@ import NavBar from "../../Components/NavBar"
 export default {
     name: 'Login',
     components: {NavBar},
+    data() {
+        return {
+            form: {
+                email: "",
+                password: "",
+            },
+        }
+    },
+    methods: {
+        submit() {
+            console.log(this.$inertia)
+            this.$inertia.post('/auth', this.form)
+        },
+    },
 }
 
 </script>

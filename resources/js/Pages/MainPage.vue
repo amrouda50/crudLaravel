@@ -3,10 +3,8 @@
     <div>
         <nav-bar/>
         <div class="fcf-body">
-
             <div id="fcf-form">
                 <h3 class="fcf-h3">Contact us</h3>
-
                 <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
 
                     <div class="fcf-form-group">
@@ -26,13 +24,8 @@
                     <div class="fcf-form-group">
                         <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
                     </div>
-
-
-
-
                 </form>
             </div>
-
         </div>
     </div>
 </template>

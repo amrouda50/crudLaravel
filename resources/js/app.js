@@ -1,8 +1,9 @@
 require('./bootstrap')
-import { InertiaApp } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 
-Vue.use(InertiaApp)
+import { App, plugin } from '@inertiajs/inertia-vue'
+
+Vue.use(plugin)
 
 const app = document.getElementById('app')
 
@@ -13,7 +14,7 @@ const pages = {
 }
 
 new Vue({
-    render: h => h(InertiaApp, {
+    render: h => h(App, {
         props: {
             initialPage: JSON.parse(app.dataset.page),
             resolveComponent: name => pages[name],

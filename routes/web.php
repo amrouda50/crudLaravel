@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
+use App\Http\Controllers\UserAuth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +19,7 @@ Route::get('/login', function () {
 Route::get('/', function () {
     return Inertia::render('MainPage', []);
 });
+Route::post("/auth" , [UserAuth::class , 'userLogin']);
+//Route::view('login' , 'login');
 
 
