@@ -4,6 +4,7 @@
              <div>
                  <p >This is the user's name : {{user.name}}</p>
                  <p >This is the user's email : {{user.email}}</p>
+
                  </div>
     </div>
 </template>

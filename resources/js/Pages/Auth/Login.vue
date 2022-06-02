@@ -3,7 +3,7 @@
         <nav-bar :logged-in="loggedIn"/>
         <form @submit.prevent="submit" >
             <div class="imgcontainer">
-                <img :src="require('../../../assets/img_avatar.png').default" alt="Avatar" class="avatar">
+                <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-1024.png" alt="Avatar" class="avatar">
             </div>
             <div v-if="errors.data"> {{errors.data}} </div>
             <div class="container">
