@@ -6,19 +6,19 @@
             <div id="fcf-form">
                 <h1 v-if="user"> Welcome {{user}}</h1>
                 <h3 class="fcf-h3">Contact us</h3>
-                <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
+                <form  @submit.prevent="submit" id="fcf-form-id" class="fcf-form-class">
 
                     <div class="fcf-form-group">
-                        <label for="Email" class="fcf-label">Recipient email address</label>
+                        <label  for="Email" class="fcf-label">Recipient email address</label>
                         <div class="fcf-input-group">
-                            <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                            <input v-model="form.email" type="email" id="Email" name="Email" class="fcf-form-control" required>
                         </div>
                     </div>
 
                     <div class="fcf-form-group">
-                        <label for="Message" class="fcf-label">Your message</label>
+                        <label  for="Message" class="fcf-label">Your message</label>
                         <div class="fcf-input-group">
-                            <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                            <textarea v-model="form.message" id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
                         </div>
                     </div>
                     <input type="file" id="file" name="file" class="fcf-form-file" required>
@@ -39,6 +39,25 @@ export default {
     components: { NavBar },
     props:{
      user : String,
+    },
+    data() {
+        return {
+            form: {
+                email: "",
+                message: "",
+                file : "",
+            },
+        }
+    },
+    methods: {
+        submit() {
+            this.$inertia.visit
+            ('/send-email',
+                {
+                    method : 'get',
+                    data : this.form,
+                } )
+        },
     },
 }
 
