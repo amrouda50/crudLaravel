@@ -2,12 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class UserAuth extends Controller
 {
-    function userLogin(Request $req){
-      $info =  $req->input();
-      dd($info);
+    function userLogin(request $req){
+         $info =  $req->input();
+         $authChecker = Auth::attempt(['email' => $info['email'] , 'password' => $info['password']]);
+         if($authChecker)
+         {
+             $req->session()->put('email' , $info['email']);
+             $req->session()->put('password' , $info['password']);
+             return redirect(RouteServiceProvider::HOME);
+         }
+        return Redirect::back()->withErrors([
+            'data' => 'Incorrect Email or Password',
+        ]);
+
+
+
+
     }
 }

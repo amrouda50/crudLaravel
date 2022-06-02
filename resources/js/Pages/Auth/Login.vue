@@ -5,7 +5,7 @@
             <div class="imgcontainer">
                 <img :src="require('../../../assets/img_avatar.png').default" alt="Avatar" class="avatar">
             </div>
-
+            <div v-if="errors.data"> {{errors.data}} </div>
             <div class="container">
                 <label for="uname"><b>Email</b></label>
                 <input type="text" v-model="form.email" placeholder="Enter Email" name="uname" required>
@@ -26,8 +26,12 @@ import NavBar from "../../Components/NavBar"
 export default {
     name: 'Login',
     components: {NavBar},
+    props: {
+        errors: Object,
+    },
     data() {
         return {
+            error: '',
             form: {
                 email: "",
                 password: "",
@@ -36,8 +40,12 @@ export default {
     },
     methods: {
         submit() {
-            console.log(this.$inertia)
-            this.$inertia.post('/auth', this.form)
+            this.$inertia.visit
+                ('/auth',
+                    {
+                        method : 'post',
+                        data : this.form,
+                    } )
         },
     },
 }

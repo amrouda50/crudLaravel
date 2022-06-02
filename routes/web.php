@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UserAuth;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +14,11 @@ use App\Http\Controllers\UserAuth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/login', function () {
-    return Inertia::render('Auth/Login', []);
+Route::get('/login', function (/*Request $req*/) {
+        return Inertia::render('Auth/Login', [
+
+        ]);
+
 });
 Route::get('/', function () {
     return Inertia::render('MainPage', []);
