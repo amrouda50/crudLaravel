@@ -10,15 +10,16 @@ use Illuminate\Queue\SerializesModels;
 class FormMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $mailData;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($mailData)
     {
-        //
+        $this->mailData = $mailData;
+       // dd($this->mailData);
     }
 
     /**
@@ -28,6 +29,6 @@ class FormMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.form');
+        return $this->view('emails.form');
     }
 }
