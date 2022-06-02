@@ -11,14 +11,16 @@ class FormMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $mailData;
+    private $file;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($mailData, $file)
     {
         $this->mailData = $mailData;
+        $this->file = $file;
        // dd($this->mailData);
     }
 
@@ -29,6 +31,6 @@ class FormMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.form');
+        return $this->view('emails.form')->attach($this->file);
     }
 }

@@ -21,7 +21,7 @@
                             <textarea v-model="form.message" id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
                         </div>
                     </div>
-                    <input type="file" id="file" name="file" class="fcf-form-file" required>
+                    <input @change="onfilechange" type="file" id="file" name="file" class="fcf-form-file" required>
                     <div class="fcf-form-group">
                         <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
                     </div>
@@ -45,17 +45,22 @@ export default {
             form: {
                 email: "",
                 message: "",
-                file : "",
+                file : null,
             },
         }
     },
     methods: {
+        onfilechange(e){
+         this.form.file = e.target.files[0]
+        },
         submit() {
+            console.log(this.form)
             this.$inertia.visit
             ('/send-email',
                 {
-                    method : 'get',
+                    method : 'post',
                     data : this.form,
+                    forceFormData:true,
                 } )
         },
     },

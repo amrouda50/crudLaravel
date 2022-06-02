@@ -30,7 +30,7 @@ Route::get('/', function () {
         'user' => isset($user) ? $user->name: ''
     ]);
 });
-Route::get('/send-email', [MailController::class, 'attachment_email']);
+Route::post('/send-email', [MailController::class, 'attachment_email']);
 
 Route::post("/auth" , [UserAuth::class , 'userLogin']);
 //Route::view('login' , 'login');
