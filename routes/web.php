@@ -17,9 +17,14 @@ use App\Http\Controllers\MailController;
 |
 */
 Route::get('/login', function (/*Request $req*/) {
-        return Inertia::render('Auth/Login', [
 
-        ]);
+        return Inertia::render('Auth/Login', [ 'loggedIn' => session()->has('email') ]);
+
+});
+Route::get('/myprofile', function (/*Request $req*/) {
+    $users =  DB::table('users')->where('email' , '=', session()->get('email'));
+    $user = $users->first();
+    return Inertia::render('Auth/Myprofile', [ 'user' => $user ,'loggedIn' => session()->has('email') ] );
 
 });
 Route::get('/', function () {
@@ -27,12 +32,14 @@ Route::get('/', function () {
 
    $user = $users->first();
     return Inertia::render('MainPage', [
-        'user' => isset($user) ? $user->name: ''
+        'user' => isset($user) ? $user->name: '',
+        'loggedIn' => session()->has('email'),
     ]);
 });
 Route::post('/send-email', [MailController::class, 'attachment_email']);
 
 Route::post("/auth" , [UserAuth::class , 'userLogin']);
+Route::get("/logout" , [UserAuth::class , 'userLogOut']);
 //Route::view('login' , 'login');
 
 

@@ -1,22 +1,11 @@
 <template>
     <div>
         <nav-bar :logged-in="loggedIn"/>
-        <form @submit.prevent="submit" >
-            <div class="imgcontainer">
-                <img src="https://cdn4.iconfinder.com/data/icons/avatars-xmas-giveaway/128/batman_hero_avatar_comics-1024.png" alt="Avatar" class="avatar">
-            </div>
-            <div v-if="errors.data"> {{errors.data}} </div>
-            <div class="container">
-                <label for="uname"><b>Email</b></label>
-                <input type="text" v-model="form.email" placeholder="Enter Email" name="uname" required>
+             <div>
+                 <p >This is the user's name : {{user.name}}</p>
+                 <p >This is the user's email : {{user.email}}</p>
 
-                <label for="psw"><b>Password</b></label>
-                <input type="password" v-model="form.password" placeholder="Enter Password" name="psw" required>
-
-                <button type="submit">Login</button>
-
-            </div>
-        </form>
+                 </div>
     </div>
 </template>
 
@@ -27,8 +16,8 @@ export default {
     name: 'Login',
     components: {NavBar},
     props: {
-        errors: Object,
         loggedIn : Boolean,
+        user: Object,
     },
     data() {
         return {
@@ -42,11 +31,11 @@ export default {
     methods: {
         submit() {
             this.$inertia.visit
-                ('/auth',
-                    {
-                        method : 'post',
-                        data : this.form,
-                    } )
+            ('/auth',
+                {
+                    method : 'post',
+                    data : this.form,
+                } )
         },
     },
 }
