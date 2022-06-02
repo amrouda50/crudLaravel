@@ -1,11 +1,12 @@
 
 <template>
     <div>
-        <nav-bar/>
+        <nav-bar :logged-in="loggedIn"/>
         <div class="fcf-body">
             <div id="fcf-form">
                 <h1 v-if="user"> Welcome {{user}}</h1>
                 <h3 class="fcf-h3">Contact us</h3>
+                <div v-if="errors.data"> {{errors.data}} </div>
                 <form  @submit.prevent="submit" id="fcf-form-id" class="fcf-form-class">
 
                     <div class="fcf-form-group">
@@ -39,6 +40,8 @@ export default {
     components: { NavBar },
     props:{
      user : String,
+        errors:Object,
+        loggedIn : Boolean,
     },
     data() {
         return {

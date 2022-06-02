@@ -17,9 +17,8 @@ use App\Http\Controllers\MailController;
 |
 */
 Route::get('/login', function (/*Request $req*/) {
-        return Inertia::render('Auth/Login', [
 
-        ]);
+        return Inertia::render('Auth/Login', [ 'loggedIn' => session()->has('email') ]);
 
 });
 Route::get('/', function () {
@@ -27,12 +26,14 @@ Route::get('/', function () {
 
    $user = $users->first();
     return Inertia::render('MainPage', [
-        'user' => isset($user) ? $user->name: ''
+        'user' => isset($user) ? $user->name: '',
+        'loggedIn' => session()->has('email'),
     ]);
 });
 Route::post('/send-email', [MailController::class, 'attachment_email']);
 
 Route::post("/auth" , [UserAuth::class , 'userLogin']);
+Route::get("/logout" , [UserAuth::class , 'userLogOut']);
 //Route::view('login' , 'login');
 
 

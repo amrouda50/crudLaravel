@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav-bar/>
+        <nav-bar :logged-in="loggedIn"/>
         <form @submit.prevent="submit" >
             <div class="imgcontainer">
                 <img :src="require('../../../assets/img_avatar.png').default" alt="Avatar" class="avatar">
@@ -28,6 +28,7 @@ export default {
     components: {NavBar},
     props: {
         errors: Object,
+        loggedIn : Boolean,
     },
     data() {
         return {

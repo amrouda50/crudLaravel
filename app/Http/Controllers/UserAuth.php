@@ -26,4 +26,13 @@ class UserAuth extends Controller
 
 
     }
+
+    function userLogOut(request $req){
+        if($req->session()->has('email')){
+         $req->session()->forget('email');
+         $req->session()->forget('password');
+            return redirect('/login');
+        }
+
+    }
 }

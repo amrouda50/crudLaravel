@@ -2,7 +2,8 @@
     <div>
         <div class="topnav">
             <a class="active" href="/">Home</a>
-            <a href="/login">Login</a>
+            <a v-if="!loggedIn" href="/login">Login</a>
+            <a v-else href="/logout">Logout</a>
         </div>
     </div>
 </template>
@@ -12,7 +13,11 @@
 
 export default {
     name: 'NavBar',
+    props:{
+        loggedIn : Boolean,
+    },
 }
+
 
 </script>
 
