@@ -5,6 +5,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\UserAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\MailController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,8 @@ Route::get('/', function () {
         'user' => isset($user) ? $user->name: ''
     ]);
 });
+Route::post('/send-email', [MailController::class, 'attachment_email']);
+
 Route::post("/auth" , [UserAuth::class , 'userLogin']);
 //Route::view('login' , 'login');
 
