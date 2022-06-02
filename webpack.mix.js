@@ -36,13 +36,19 @@ mix.js('resources/js/app.js', 'public/js')
             alias: {
                 vue$: 'vue/dist/vue.runtime.esm.js',
                 '@': path.resolve('resources/js'),
+                '~': path.resolve('resources')
             },
         }
-    });
+    }).copyDirectory("resources/assets" , "public/assets");
 
 mix.options({
     hmrOptions: {
         host: "localhost",
-        port: 8584
+        port: 8500
     }
+})
+mix.override(webpackConfig => {
+
+    webpackConfig.module.rules.forEach(rule => {if (rule.test.toString() === '/(\\.(png|jpe?g|gif|webp)$|^((?!font).)*\\.svg$)/') {if (Array.isArray(rule.use)) {rule.use.forEach(ruleUse => {if (ruleUse.loader === 'file-loader') {ruleUse.options.esModule = false;}});}}});
+
 })
