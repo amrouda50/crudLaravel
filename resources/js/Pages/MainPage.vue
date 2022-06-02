@@ -4,6 +4,7 @@
         <nav-bar/>
         <div class="fcf-body">
             <div id="fcf-form">
+                <h1 v-if="user"> Welcome {{user}}</h1>
                 <h3 class="fcf-h3">Contact us</h3>
                 <form id="fcf-form-id" class="fcf-form-class" method="post" action="contact-form-process.php">
 
@@ -36,6 +37,9 @@ import NavBar from "../Components/NavBar"
 export default {
     name: 'MainPage',
     components: { NavBar },
+    props:{
+     user : String,
+    },
 }
 
 
