@@ -3,7 +3,11 @@
         <div class="topnav">
             <a class="active" href="/">Home</a>
             <a v-if="!loggedIn" href="/login">Login</a>
-            <a v-else href="/logout">Logout</a>
+            <template v-else >
+                <a href="/logout">Logout</a>
+                <a href="/myprofile">MyProfile</a>
+            </template>
+
         </div>
     </div>
 </template>

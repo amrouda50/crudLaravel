@@ -21,6 +21,12 @@ Route::get('/login', function (/*Request $req*/) {
         return Inertia::render('Auth/Login', [ 'loggedIn' => session()->has('email') ]);
 
 });
+Route::get('/myprofile', function (/*Request $req*/) {
+    $users =  DB::table('users')->where('email' , '=', session()->get('email'));
+    $user = $users->first();
+    return Inertia::render('Auth/Myprofile', [ 'user' => $user ,'loggedIn' => session()->has('email') ] );
+
+});
 Route::get('/', function () {
    $users =  DB::table('users')->where('email' , '=', session()->get('email'));
 
